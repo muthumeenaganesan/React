@@ -7,21 +7,38 @@ var Child2=require('./component/Child2');
 var MainComponent=React.createClass({
 
 
+  getInitialState:function(){
+
+  return ({
+    StateData:'state to my child'
+})
+},
+
+
+// handleClick:function(StateData){
+//   this.setState({StateData:'My Dear Child'});
+// },
+handle:function(inStateData){
+  this.setState({StateData:inStateData});
+},
+
+
   render: function(){
     return (
       <div>
       <h2>Hello Muthu</h2>
-      <ChildComponent data="Hello"/>
-      <Child2 data2="Hello Dear"/>
+      <ChildComponent data={this.handle} />
+      <Child2 data2={this.state.StateData}/>
+
         </div>
-  //  <div>
-    //   <ChildComponent />
-  //   </div>
 
     )
   }
 
 })
+
+
+
 
 
 ReactDOM.render(<MainComponent />, document.getElementById('app1'));

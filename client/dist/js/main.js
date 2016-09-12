@@ -20769,6 +20769,7 @@ render:function(){
   return(
     React.createElement("div", null, React.createElement("h2", null, "Hiii Child2"), 
     this.props.data2
+    
     )
   );
 }
@@ -20783,13 +20784,18 @@ var GrandChild=require('./GrandChild');
 var ChildComponent=React.createClass({displayName: "ChildComponent",
 
 
+  handle:function(){
+    {this.props.data('new state')}
+  },
+
   render: function(){
     return (
       React.createElement("div", null, 
       React.createElement("h2", null, "My First Child"), 
       this.props.data, 
-      React.createElement(GrandChild, {data1: "hiiiii"})
-      )
+      React.createElement(GrandChild, {data1: "hiiiii"}), 
+      React.createElement("button", {onClick: this.handle}, "Click")
+        )
 
     );
   }
@@ -20827,21 +20833,38 @@ var Child2=require('./component/Child2');
 var MainComponent=React.createClass({displayName: "MainComponent",
 
 
+  getInitialState:function(){
+
+  return ({
+    StateData:'state to my child'
+})
+},
+
+
+// handleClick:function(StateData){
+//   this.setState({StateData:'My Dear Child'});
+// },
+handle:function(inStateData){
+  this.setState({StateData:inStateData});
+},
+
+
   render: function(){
     return (
       React.createElement("div", null, 
       React.createElement("h2", null, "Hello Muthu"), 
-      React.createElement(ChildComponent, {data: "Hello"}), 
-      React.createElement(Child2, {data2: "Hello Dear"})
+      React.createElement(ChildComponent, {data: this.handle}), 
+      React.createElement(Child2, {data2: this.state.StateData})
+
         )
-  //  <div>
-    //   <ChildComponent />
-  //   </div>
 
     )
   }
 
 })
+
+
+
 
 
 ReactDOM.render(React.createElement(MainComponent, null), document.getElementById('app1'));

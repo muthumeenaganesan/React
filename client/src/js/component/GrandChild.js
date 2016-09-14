@@ -9,10 +9,21 @@ var GrandChild=React.createClass({
   return(
 
       <div>
-    <h2>My Grand child</h2>
-    {this.props.data}
-    {
-      this.props.data1}
+      <div>
+      {this.props.title}
+      </div>
+      <div>
+      {this.props.year}
+      </div>
+      <div>
+      {this.props.imdbID}
+      </div>
+      <div>
+      {this.props.type}
+      </div>
+      <div>
+      <img src={this.props.poster} />
+      </div>
       </div>
 );
 }

@@ -1,21 +1,23 @@
 var React= require('react');
-var GrandChild=require('./GrandChild');
+var e="";
 
 
 var ChildComponent=React.createClass({
 
 
+
+  change:function(event){
+   e=event.target.value;
+  },
   handle:function(){
-    {this.props.data('new state')}
+    {this.props.data(e)}
   },
 
   render: function(){
     return (
       <div>
-      <h2>My First Child</h2>
-      {this.props.data}
-      <GrandChild data1="hiiiii"/>
-      <button onClick={this.handle}>Click</button>
+      Movie Name:<input type="text"  onChange={this.change} />
+        <button type="button" onClick={this.handle} >Search</button>
         </div>
 
     );
